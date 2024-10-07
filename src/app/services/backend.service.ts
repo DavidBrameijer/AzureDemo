@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Post } from '../models/post';
 import { User } from '../models/user';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BackendService {
 
-  url:string = "https://azuredemo123123123.azurewebsites.net/";
+  url:string = environment.apiDomain;
   constructor(private http:HttpClient) { }
 
   getAllPosts():Observable<Post[]>{
@@ -21,6 +22,6 @@ export class BackendService {
   }
 
   addUser(u:User):Observable<User>{
-    return this.http.post<User>(`${this.url}/api/Users`, u)
+    return this.http.post<User>(`${this.url}api/Users`, u)
   }
 }
